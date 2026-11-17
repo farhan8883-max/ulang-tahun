@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--peach:#ffd9c7;--rose:#ff7aa8;--lav:#cdb4ff;--cream:#fff6ec;--gold:#f6c453;--ink:#6b2f55}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Fredoka','Arial',sans-serif}
+body{min-height:100vh;overflow:hidden;color:var(--ink);
+background:radial-gradient(circle at 15% 10%,#fff 0,transparent 35%),radial-gradient(circle at 90% 90%,#e6d4ff 0,transparent 45%),linear-gradient(160deg,var(--peach),#ffc2d9 55%,var(--lav))}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.page{position:fixed;inset:0;z-index:2;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;overflow-y:auto}
+.page.on{display:flex;animation:in .8s cubic-bezier(.2,1.3,.4,1)}
+@keyframes in{from{opacity:0;transform:translateY(30px) scale(.92)}to{opacity:1;transform:none}}
+h1{font-family:'Dancing Script',cursive;font-size:clamp(38px,9vw,70px);color:#fff;line-height:1.15;text-shadow:0 3px 0 var(--rose),0 8px 22px rgba(255,100,150,.5);margin-bottom:12px}
+p.sub{font-size:clamp(15px,3.5vw,19px);margin-bottom:26px;color:var(--ink)}
+button{border:none;cursor:pointer;font-weight:600;font-size:clamp(16px,3.4vw,20px);padding:15px 32px;border-radius:50px;color:#fff;
+background:linear-gradient(135deg,#ff9ac0,var(--rose));box-shadow:0 8px 22px rgba(255,100,150,.5);transition:transform .3s cubic-bezier(.2,1.6,.4,1)}
+button:hover{transform:scale(1.07)}button:active{transform:scale(.94)}
+button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.pulse{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 14px rgba(255,255,255,.4),0 8px 28px rgba(255,100,150,.6)}}
+
+/* foto bulat */
+.photo{width:150px;height:150px;border-radius:50%;padding:6px;margin-bottom:18px;background:conic-gradient(var(--gold),#fff,var(--rose),var(--lav),var(--gold));animation:spin 9s linear infinite}
+.photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid #fff;animation:spin 9s linear infinite reverse;background:var(--cream)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* kue */
+.cake{position:relative;width:230px;height:210px;margin:30px 0 22px;filter:drop-shadow(0 14px 14px rgba(150,60,100,.25))}
+.plate{position:absolute;bottom:0;left:-20px;right:-20px;height:16px;border-radius:50%;background:#fff}
+.layer{position:absolute;left:0;right:0;border-radius:18px}
+.l1{bottom:10px;height:70px;background:linear-gradient(#ffb6cf,#ff8fb5)}
+.l2{bottom:78px;left:28px;right:28px;height:56px;background:linear-gradient(#fff,#ffe8f1)}
+.drip{position:absolute;bottom:128px;left:28px;right:28px;height:16px;border-radius:18px 18px 40% 40%;background:var(--rose)}
+.candles{position:absolute;bottom:134px;left:50px;right:50px;display:flex;justify-content:space-between}
+.candle{width:12px;height:42px;border-radius:5px;background:repeating-linear-gradient(45deg,#fff 0 6px,var(--lav) 6px 12px);position:relative}
+.flame{position:absolute;left:50%;top:-26px;width:14px;height:24px;margin-left:-7px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+background:radial-gradient(circle at 50% 70%,#fff6b0,#ffb703 60%,#ff6b35);box-shadow:0 0 18px 6px rgba(255,200,60,.7);animation:flick .25s ease-in-out infinite alternate;transform-origin:50% 100%;transition:opacity .4s,transform .4s}
+.out .flame{opacity:0;transform:scale(0)}
+@keyframes flick{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.1) rotate(3deg)}}
+.dots{position:absolute;bottom:22px;left:14px;right:14px;display:flex;justify-content:space-around;font-size:18px}
+
+/* surat */
+.env{position:relative;width:min(88vw,300px);height:200px;cursor:pointer;margin-bottom:20px}
+.env-back{position:absolute;inset:0;background:#ffb3cd;border-radius:14px;box-shadow:0 12px 26px rgba(150,60,100,.3)}
+.env-flap{position:absolute;top:0;left:0;right:0;height:110px;background:#ff8fb5;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s;z-index:3}
+.env-front{position:absolute;inset:0;background:linear-gradient(135deg,#ffc9dc,#ffa6c6);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);border-radius:14px;z-index:2}
+.seal{position:absolute;top:92px;left:50%;margin-left:-20px;font-size:34px;z-index:4;transition:opacity .3s}
+.env.open .env-flap{transform:rotateX(180deg);z-index:0}.env.open .seal{opacity:0}
+.letter{width:min(92vw,460px);max-height:58vh;overflow-y:auto;background:var(--cream);border-radius:22px;padding:26px 24px;text-align:left;
+font-family:'Dancing Script',cursive;font-size:clamp(21px,4.6vw,27px);line-height:1.5;box-shadow:0 18px 40px rgba(150,60,100,.28);border:3px solid #fff;position:relative}
+.letter::after{content:"";display:inline-block;width:2px;height:1em;background:var(--rose);vertical-align:-2px;animation:blink .8s steps(1) infinite}
+.letter.done::after{display:none}
+@keyframes blink{50%{opacity:0}}
+.nexts{margin-top:18px;min-height:56px}
+
+/* kado */
+.gifts{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.gift{width:min(26vw,104px);height:min(26vw,104px);font-size:min(14vw,56px);display:flex;align-items:center;justify-content:center;border-radius:24px;cursor:pointer;
+background:rgba(255,255,255,.7);border:3px solid #fff;box-shadow:0 10px 20px rgba(150,60,100,.2);animation:wob 2.4s ease-in-out infinite;transition:transform .3s}
+.gift:nth-child(2){animation-delay:.3s}.gift:nth-child(3){animation-delay:.6s}
+.gift:hover{transform:scale(1.1) rotate(-6deg)}.gift.opened{animation:none;background:var(--gold)}
+@keyframes wob{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg) translateY(-6px)}}
+.coupon{min-height:92px;max-width:420px;padding:16px 20px;border-radius:20px;background:rgba(255,255,255,.75);border:2px dashed var(--rose);font-size:18px;line-height:1.45;display:flex;align-items:center;justify-content:center}
+#mus{position:fixed;top:14px;right:14px;z-index:6;padding:9px 16px;font-size:14px;display:flex;gap:6px;align-items:center;max-width:70vw;background:rgba(255,255,255,.75);color:var(--ink);box-shadow:0 6px 16px rgba(150,60,100,.25)}
+#mus span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mus .note{display:inline-block}#mus.on .note{animation:spin 3s linear infinite}
+.stage{position:relative;width:min(92vw,380px);height:min(88vw,360px);perspective:900px;margin:6px 0 14px}
+.ring{position:absolute;inset:0;transform-style:preserve-3d;animation:sway 9s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotateY(-48deg) rotateX(6deg)}to{transform:rotateY(48deg) rotateX(-4deg)}}
+.ph{position:absolute;left:0;top:0;border-radius:14px;border:3px solid #fff;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;
+background:linear-gradient(135deg,#ffc2d9,var(--lav));box-shadow:0 8px 18px rgba(150,60,100,.35);animation:glowp 2.4s ease-in-out infinite alternate}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@keyframes glowp{to{box-shadow:0 0 18px 4px rgba(255,255,255,.8)}}
+.center-t{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-family:'Dancing Script',cursive;font-size:clamp(34px,9vw,52px);color:#fff;text-shadow:0 0 14px var(--rose),0 3px 0 var(--rose);animation:beatT 1.2s ease-in-out infinite;pointer-events:none}
+@keyframes beatT{50%{transform:translate(-50%,-50%) scale(1.12)}}
+#lb{position:fixed;inset:0;z-index:9;background:rgba(80,20,50,.7);display:none;align-items:center;justify-content:center;padding:20px}
+#lb img{max-width:92vw;max-height:84vh;border-radius:18px;border:4px solid #fff}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<audio id="bgm" loop preload="auto"></audio>
+<button id="mus" aria-label="Putar atau jeda lagu"><b class="note">🎵</b><span id="judul"></span></button>
+<div id="lb"><img alt=""></div>
+
+<!-- 1. Pembuka -->
+<div id="p1" class="page on">
+  <div class="photo"><img src="us in another version.png" alt="" onerror="this.parentNode.style.display='none'"></div>
+  <h1 id="t1">Ada yang spesial hari ini…</h1>
+  <p class="sub">Seseorang lagi nambah umur dan aku punya kejutan kecil.</p>
+  <button class="pulse" data-go="p2">Buka Kejutan 🎁</button>
+</div>
+
+<!-- 2. Kue -->
+<div id="p2" class="page">
+  <h1 id="t2">Make a wish dulu ya ✨</h1>
+  <p class="sub">Pejamkan mata, bisikin satu harapan, lalu tiup lilinnya.</p>
+  <div class="cake" id="cake">
+    <div class="candles"><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div></div>
+    <div class="layer l2"></div><div class="drip"></div><div class="layer l1"></div>
+    <div class="dots"><span>🍓</span><span>🌸</span><span>🍓</span><span>🌸</span><span>🍓</span></div>
+    <div class="plate"></div>
+  </div>
+  <button id="blow">Tiup Lilin 🕯️</button>
+  <div class="nexts"><button id="to3" style="display:none" data-go="p3">Ada surat buat kamu 💌</button></div>
+</div>
+
+<!-- 3. Surat -->
+<div id="p3" class="page">
+  <h1>Surat Kecil 💌</h1>
+  <div class="env" id="env"><div class="env-back"></div><div class="env-flap"></div><div class="env-front"></div><div class="seal">💗</div></div>
+  <p class="sub" id="hint">Ketuk amplopnya ya</p>
+  <div class="letter" id="letter" style="display:none"></div>
+  <div class="nexts"><button id="to4" style="display:none" data-go="pF">Lihat kenangan kita 📸</button></div>
+</div>
+
+<!-- Foto membentuk hati -->
+<div id="pF" class="page">
+  <h1>Kenangan Kita 💞</h1>
+  <p class="sub">Ketuk foto untuk memperbesar.</p>
+  <div class="stage"><div class="ring" id="ring"></div><div class="center-t">Kita 💗</div></div>
+  <button class="pulse" data-go="p4">Lanjut ke kado 🎁</button>
+</div>
+
+<!-- 4. Kado -->
+<div id="p4" class="page">
+  <h1>Pilih Kadomu 🎀</h1>
+  <p class="sub">Tiga kado, semuanya buat kamu. Buka satu-satu ya.</p>
+  <div class="gifts">
+    <div class="gift" data-i="0">🎁</div><div class="gift" data-i="1">🎁</div><div class="gift" data-i="2">🎁</div>
+  </div>
+  <div class="coupon" id="coupon">Ketuk salah satu kado 💝</div>
+  <div class="nexts"><button id="end" style="display:none" data-go="p5">Satu lagi… 💖</button></div>
+</div>
+
+<!-- 5. Penutup -->
+<div id="p5" class="page">
+  <h1 id="finalT"></h1>
+  <p class="sub" style="font-size:clamp(18px,4vw,24px)" id="finalS"></p>
+  <button id="again">Ulangi dari awal 🔁</button>
+</div>
+
+<script>
+/* ====== EDIT BAGIAN INI ====== */
+const NAMA = "Sayang";
+const SURAT = [
+ `Hai ${NAMA} 💗`,
+ `Selamat ulang tahun ya. Hari ini hari kamu, jadi kamu boleh makan kue sepuasnya dan dimanja sepanjang hari.`,
+ `Makasih sudah jadi kamu: yang bikin hariku lebih ringan dan lebih banyak senyum.`,
+ `Semoga tahun ini isinya banyak hal baik, sehat selalu, dan semua yang kamu doakan pelan-pelan jadi nyata.`,
+ `Aku bakal selalu ada di sampingmu. Sayang kamu banyak-banyak 🌷`
+];
+const KADO = [
+ "🎟️ Kupon: 1x traktir makan di tempat pilihanmu, tanpa protes.",
+ "🤗 Kupon: 1x peluk kapan saja kamu butuh, berlaku seumur hidup.",
+ "🌙 Kupon: 1x malam ngobrol sepuasnya, aku yang dengerin."
+];
+const PENUTUP = ["Happy Birthday, "+NAMA+" 🎂","Terima kasih sudah lahir ke dunia ini. Kamu berharga banget 💖"];
+const LAGU_FILE = "lagu.mp3";          // taruh file lagunya di folder yang sama
+const LAGU_JUDUL = "Lagu kesukaan kamu"; // tulis judul + penyanyi
+const FOTO = ["us in another version.png","download (42).png","download (41).png","us in another version.png","download (42).png","download (41).png","us in another version.png"]; // ganti dengan nama foto kalian
+/* ============================= */
+
+const $=id=>document.getElementById(id);
+const show=id=>{document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));$(id).classList.add("on")};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){burst(e.clientX,e.clientY,14);startMusic();show(b.dataset.go);if(b.dataset.go==="p5")finale();if(b.dataset.go==="pF")buildHeart()}});
+
+/* canvas: balon, konfeti, hati */
+const cv=$("fx"),cx=cv.getContext("2d");let W,H;
+const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};rs();addEventListener("resize",rs);
+const EM=["🎈","💖","✨","🌸","🎀","🍓"],bg=[],ps=[];
+const mk=init=>({x:Math.random()*W,y:init?Math.random()*H:H+40,s:18+Math.random()*22,v:.35+Math.random()*.7,w:Math.random()*6,e:EM[Math.random()*EM.length|0],a:.3+Math.random()*.4});
+for(let i=0;i<22;i++)bg.push(mk(true));
+const COL=["#ff7aa8","#f6c453","#cdb4ff","#8be0c9","#fff","#ff9a76"];
+function confetti(n=140){for(let i=0;i<n;i++)ps.push({x:Math.random()*W,y:-20-Math.random()*H*.4,vx:(Math.random()-.5)*3,vy:2+Math.random()*4,r:4+Math.random()*6,c:COL[Math.random()*COL.length|0],rot:Math.random()*6,vr:(Math.random()-.5)*.3,l:1,t:"c"})}
+function burst(x,y,n=16){for(let i=0;i<n;i++){const a=Math.random()*6.283,sp=2+Math.random()*5;ps.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,s:14+Math.random()*14,e:EM[Math.random()*EM.length|0],l:1,t:"e"})}}
+(function loop(){cx.clearRect(0,0,W,H);
+for(const p of bg){p.y-=p.v;p.w+=.025;p.x+=Math.sin(p.w)*.6;if(p.y<-50)Object.assign(p,mk(false));cx.globalAlpha=p.a;cx.font=p.s+"px serif";cx.fillText(p.e,p.x,p.y)}
+for(let i=ps.length-1;i>=0;i--){const p=ps[i];p.x+=p.vx;p.y+=p.vy;
+if(p.t==="c"){p.rot+=p.vr;if(p.y>H+20){ps.splice(i,1);continue}cx.globalAlpha=1;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.fillStyle=p.c;cx.fillRect(-p.r,-p.r/2,p.r*2,p.r);cx.restore()}
+else{p.vy+=.12;p.l-=.015;if(p.l<=0){ps.splice(i,1);continue}cx.globalAlpha=p.l;cx.font=p.s+"px serif";cx.fillText(p.e,p.x,p.y)}}
+requestAnimationFrame(loop)})();
+addEventListener("pointerdown",e=>burst(e.clientX,e.clientY,6));
+
+/* kue */
+$("blow").onclick=()=>{
+ $("cake").classList.add("out");$("blow").style.display="none";
+ confetti(180);$("t2").textContent="Yeay! Semoga doamu terkabul 🎉";
+ $("to3").style.display="inline-block";$("to3").classList.add("pulse");
+};
+
+/* surat + ketikan */
+let typed=false;
+$("env").onclick=()=>{
+ if(typed)return;typed=true;$("env").classList.add("open");$("hint").style.display="none";
+ setTimeout(()=>{$("env").style.display="none";const L=$("letter");L.style.display="block";type(L)},800);
+};
+function type(L){
+ const txt=SURAT.join("\n\n");let i=0;
+ const tick=()=>{L.firstChild&&L.removeChild(L.firstChild);
+  L.insertBefore(document.createTextNode(txt.slice(0,i)),L.firstChild);
+  L.style.whiteSpace="pre-wrap";L.scrollTop=L.scrollHeight;
+  if(i++<txt.length)setTimeout(tick,i%7?26:60);
+  else{L.classList.add("done");$("to4").style.display="inline-block";$("to4").classList.add("pulse");confetti(60)}};
+ tick();
+}
+
+/* kado */
+let opened=0;
+document.querySelectorAll(".gift").forEach(g=>g.onclick=e=>{
+ if(g.classList.contains("opened"))return;
+ g.classList.add("opened");g.textContent="💝";$("coupon").textContent=KADO[+g.dataset.i];
+ burst(e.clientX,e.clientY,26);
+ if(++opened===3){$("end").style.display="inline-block";$("end").classList.add("pulse")}
+});
+
+/* penutup */
+function finale(){
+ $("finalT").textContent=PENUTUP[0];$("finalS").textContent=PENUTUP[1];
+ confetti(220);let n=0;const iv=setInterval(()=>{burst(60+Math.random()*(W-120),60+Math.random()*H*.5,24);if(++n>14)clearInterval(iv)},700);
+}
+$("again").onclick=()=>location.reload();
+
+/* musik */
+const bgm=$("bgm");bgm.src=LAGU_FILE;bgm.volume=0;$("judul").textContent=LAGU_JUDUL;
+let started=false,userPaused=false;
+function fadeIn(){const t=setInterval(()=>{bgm.volume=Math.min(.8,bgm.volume+.05);if(bgm.volume>=.8)clearInterval(t)},150)}
+function startMusic(){
+ if(started||userPaused)return;
+ bgm.play().then(()=>{started=true;$("mus").classList.add("on");fadeIn()}).catch(()=>{});
+}
+$("mus").onclick=e=>{
+ e.stopPropagation();
+ if(bgm.paused){userPaused=false;started=true;bgm.play().catch(()=>{});$("mus").classList.add("on");fadeIn()}
+ else{userPaused=true;bgm.pause();$("mus").classList.remove("on")}
+};
+bgm.onerror=()=>{$("mus").style.display="none"};
+
+/* foto membentuk hati 3D */
+let built=false;
+function buildHeart(){
+ if(built)return;built=true;
+ const ring=$("ring"),w=Math.min(innerWidth*.92,380),h=Math.min(innerWidth*.88,360);
+ const k=w/38,size=w*.21,N=18;
+ for(let i=0;i<N;i++){
+  const t=i/N*Math.PI*2;
+  const x=16*Math.pow(Math.sin(t),3),y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
+  const z=((i%3)-1)*55;
+  const d=document.createElement("div");d.className="ph";
+  d.style.width=size+"px";d.style.height=size*1.15+"px";
+  d.style.transform=`translate3d(${w/2+x*k-size/2}px,${h*.46-y*k-size*.575}px,${z}px)`;
+  d.style.animationDelay=(i*.13)+"s";
+  d.textContent="💗";
+  const im=new Image();im.alt="";im.src=FOTO[i%FOTO.length];
+  im.onload=()=>{d.textContent="";d.appendChild(im)};
+  d.onclick=e=>{e.stopPropagation();if(!im.parentNode)return;$("lb").firstChild&&0;document.querySelector("#lb img").src=im.src;$("lb").style.display="flex";burst(e.clientX,e.clientY,18)};
+  ring.appendChild(d);
+ }
+}
+$("lb").onclick=()=>{$("lb").style.display="none"};
+</script>
+</body>
+</html>
